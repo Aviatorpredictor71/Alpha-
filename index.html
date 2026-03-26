@@ -95,28 +95,45 @@
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 2000;
         }
-        .modal-content {
-    /* পুরো স্ক্রিনজুড়ে ব্যাকগ্রাউন্ড ইমেজ */
+        /* Password Modal Container */
+.modal {
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: #000; 
+    z-index: 2000;
+}
+
+/* Full Screen Background Content */
+.modal-content {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                 url('https://raw.githubusercontent.com/Aviatorpredictor71/Alpha-/main/Polish_20260326_082508157.png');
-    background-size: cover;       /* ইমেজটি স্ক্রিন অনুযায়ী অ্যাডজাস্ট হবে */
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-
-    /* ফুল স্ক্রিন করার জন্য এই পরিবর্তনগুলো করা হয়েছে */
-    width: 100vw;                 /* পুরো স্ক্রিনের প্রস্থ */
-    height: 100vh;                /* পুরো স্ক্রিনের উচ্চতা */
-    margin: 0;                    /* বাড়তি জায়গা সরাতে */
-    padding: 40px 20px;
-    border-radius: 0;             /* ফুল স্ক্রিন হলে কোনা গোল করার দরকার নেই */
-    text-align: center;
-    border: none;                 /* চারপাশের বর্ডার সরিয়ে দেওয়া হয়েছে */
+    
+    /* ফুল স্ক্রিন করার জন্য এই ৩টি লাইন খুবই জরুরি */
+    width: 100vw !important; 
+    height: 100vh !important; 
+    max-width: 100% !important; 
+    
+    margin: 0; 
+    padding: 20px;
+    border-radius: 0; 
+    border: none; 
+    box-shadow: none;
+    
+    /* কন্টেন্টগুলো সুন্দর করে সাজাতে */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
+
 
        
         /* Zooming Buttons */
