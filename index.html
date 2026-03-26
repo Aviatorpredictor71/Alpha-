@@ -95,45 +95,7 @@
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 2000;
         }
-        /* Password Modal Container */
-.modal {
-    display: none; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background: #000; 
-    z-index: 2000;
-}
-
-/* Full Screen Background Content */
-.modal-content {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                url('https://raw.githubusercontent.com/Aviatorpredictor71/Alpha-/main/Polish_20260326_082508157.png');
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    
-    /* ফুল স্ক্রিন করার জন্য এই ৩টি লাইন খুবই জরুরি */
-    width: 100vw !important; 
-    height: 100vh !important; 
-    max-width: 100% !important; 
-    
-    margin: 0; 
-    padding: 20px;
-    border-radius: 0; 
-    border: none; 
-    box-shadow: none;
-    
-    /* কন্টেন্টগুলো সুন্দর করে সাজাতে */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-}
-
+        
 
        
         /* Zooming Buttons */
@@ -143,7 +105,52 @@
             animation: btnZoom 2s infinite ease-in-out;
         }
         @keyframes btnZoom { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        .unlock-btn { background: #28a745; box-shadow: 0 0 15px #28a745; }
+        .unlock-btn { background: #28a745; box-shadow: 0 0 15
+ 
+        /* Password Modal Container */
+.modal {
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.9); /* পেছনের ঝাপসা ভাব */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content with Original Border & Full Screen Background */
+.modal-content {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                url('https://raw.githubusercontent.com/Aviatorpredictor71/Alpha-/main/Polish_20260326_082508157.png');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* সাইজ এবং বর্ডার সেটিংস */
+    width: 95vw !important;        /* স্ক্রিনের ৯৫% চওড়া (অরিজিনাল লুকের জন্য) */
+    height: 90vh !important;       /* স্ক্রিনের ৯০% লম্বা */
+    max-width: 400px !important;   /* পিসি বা বড় স্ক্রিনে সুন্দর দেখানোর জন্য */
+    
+    padding: 30px 20px;
+    margin: auto;
+    border: 4px solid var(--neon-green) !important; /* আপনার সেই অরিজিনাল সবুজ বর্ডার */
+    border-radius: 25px !important;              /* গোল কোনা */
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.6); /* নিয়ন গ্লো ইফেক্ট */
+    
+    /* কন্টেন্ট এলাইনমেন্ট */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+}
+px #28a745; }
         .close-btn { background: #dc3545; box-shadow: 0 0 15px #dc3545; }
 
         .handwriting {
