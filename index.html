@@ -85,7 +85,7 @@
         }
         @keyframes cardPulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 5px var(--neon-green); }
-            50% { transform: scale(1.03); box-shadow: 0 0 20px var(--neon-green); }
+            50% { transform: scale(1.03); box-shadow: 0 0 20px var(--neon-yellow); }
         }
         .game-card img { width: 100%; height: 100%; object-fit: cover; }
         .game-card .title-overlay { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7); padding: 0px; text-align: center; }
@@ -137,18 +137,17 @@
     animation: rgb-border 1.5s infinite linear;
     border-width: 4px !important;
         }
-        
        
-        /* Zooming Buttons */
+         /* Zooming Buttons */
         .zoom-btn {
-            width: 100%; padding: 15px; border: none; color: white; border-radius: 10px;
-            margin-top: 10px; cursor: pointer; font-weight: bold; font-size: 16px;
+            width: 80%; padding: 15px; border: none; color: block; border-radius: 25px;
+            margin-top: 10px; cursor: pointer; font-weight: bold; font-size: 18px;
             animation: btnZoom 2s infinite ease-in-out;
         }
-        @keyframes btnZoom { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        .unlock-btn { background: #28a745; box-shadow: 0 0 15px #28a745; }
+        @keyframes btnZoom { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1.05); } }
+        .unlock-btn { background: #28a745; box-shadow: 0 0 15px #000000; }
         .close-btn { background: #dc3545; box-shadow: 0 0 15px #dc3545; }
-       
+     
 
         .handwriting {
             font-family: 'Courier New', cursive; color: var(--neon-yellow); font-size: 25px; margin: 10px 0;
