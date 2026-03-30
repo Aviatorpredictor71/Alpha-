@@ -53,7 +53,7 @@
             padding: 10px; text-align: center; border-radius: 8px;
             font-size: 12px; cursor: pointer; color: white; text-decoration: none;
         }
-        .fb { background: #1877F2; } .wa { background: #25D366; } .tg { background: #0088cc; } .gm { background: #D44638; }
+        .fb { background: #0000ff; } .wa { background: #25D366; } .tg { background: #00Bfff; } .gm { background: #ffff00; }
 
         /* RGB Category Box - Larger & Glowing */
         .cat-box { margin: 20px 0; border-radius: 15px; overflow: hidden; }
@@ -84,7 +84,7 @@
             animation: cardPulse 2s infinite ease-in-out;
         }
         @keyframes cardPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 5px var(--neon-green); }
+            0%, 100% { transform: scale(0.9); box-shadow: 0 0 5px var(--neon-green); }
             50% { transform: scale(1.03); box-shadow: 0 0 20px var(--neon-yellow); }
         }
         .game-card img { width: 100%; height: 100%; object-fit: cover; }
@@ -95,7 +95,7 @@
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 2000;
             
-        }/* ১. মেইন মোডাল - এখানে ফুল স্ক্রিন ব্যাকগ্রাউন্ড থাকবে */
+    }/* ১. মেইন মোডাল - এখানে ফুল স্ক্রিন ব্যাকগ্রাউন্ড থাকবে */
 .modal {
     display: none; /* প্রথমে লুকিয়ে থাকবে */
     position: fixed; 
@@ -114,28 +114,55 @@
     background-position: center;
 }
 
-
-/* ২. মোডাল কন্টেন্ট - এটা আপনার আগের ছোট সাইজেই থাকবে */
+/* ১. মোডাল কন্টেন্ট - যেখানে বর্ডারটি দৌড়াবে */
 .modal-content {
-    background: rgba(0, 0, 0, 0.1); /* বক্সের ভেতরটা একটু গাঢ় */
-    padding: 30px 20px;
-    border-radius: 15px;
+    background: #000; /* ব্যাকগ্রাউন্ড কালো */
+    padding: 30px 15px;
+    border-radius: 20px;
     width: 100%; 
-    max-width: 370px; /* আপনার সেই অরিজিনাল সাইজ */
+    max-width: 350px;
     text-align: center;
     position: relative;
-    
-    /* অরিজিনাল সবুজ বর্ডার */
-    border: 4px solid var(--neon-red);
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
-    
-    transition: all 0.3s ease;
+    z-index: 3;
+    overflow: hidden; /* বাইরের অংশ কেটে ফেলার জন্য */
+    border: none; /* আগের বর্ডার বাদ */
 }
 
-/* ৩. ভুল পাসওয়ার্ড দিলে RGB এনিমেশন (এটি আপনার কোডে আগে ছিল) */
-.error-border {
-    animation: rgb-border 1.5s infinite linear;
-    border-width: 4px !important;
+/* ২. দৌড়ানো রঙের ইফেক্ট (বর্ডারের পেছনে থাকবে) */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: -45%;
+    left: -100%;
+    width: 500%;
+    height: 110%;
+    background: conic-gradient(
+        #ff0000, /* Red */
+        #39ff14, /* Green */
+        #fbff00, /* Yellow */
+        #bc13fe, /* Purple */
+        #00f2ff, /* Blue */
+        #ff0000  /* আবার Red (মিলানোর জন্য) */
+    );
+    animation: rotate-border 4s linear infinite;
+    z-index: -10;
+}
+
+/* ৩. ভেতরের বক্সকে ঢেকে রাখা (যাতে শুধু বর্ডার দেখা যায়) */
+.modal-content::after {
+    content: '';
+    position: absolute;
+    inset: 3px; /* বর্ডারের পুরুত্ব ৪ পিক্সেল */
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+/* ৪. ঘোরার এনিমেশন লজিক */
+@keyframes rotate-border {
+    100% {
+        transform: rotate(350deg);
+    }
         }
        
          /* Zooming Buttons */
