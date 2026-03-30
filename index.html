@@ -227,6 +227,22 @@
 }
 
 /* স্টাইল শেষ */
+ /* কি (Key) বক্সে ক্লিক করলে RGB এনিমেশন হবে */
+#passIn:focus {
+    outline: none !important;
+    border-width: 2px !important;
+    animation: key-rgb-focus 4s infinite linear !important;
+}
+
+/* ৫টি রঙের RGB এনিমেশন লজিক */
+@keyframes key-rgb-focus {
+    0% { border-color: #ff0000; box-shadow: 0 0 5px #ff0000; }     /* Red */
+    20% { border-color: #39ff14; box-shadow: 0 0 15px #39ff14; }    /* Green */
+    40% { border-color: #fbff00; box-shadow: 0 0 15px #fbff00; }    /* Yellow */
+    60% { border-color: #bc13fe; box-shadow: 0 0 15px #bc13fe; }    /* Purple */
+    80% { border-color: #00f2ff; box-shadow: 0 0 15px #00f2ff; }    /* Blue */
+    100% { border-color: #ff0000; box-shadow: 0 0 5px #ff0000; }   /* ব্যাক টু Red */
+}    
 </style>
 
     </style>
