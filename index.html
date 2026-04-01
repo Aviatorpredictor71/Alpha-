@@ -113,56 +113,79 @@
     background-position: center;
 }
 
-/* ১. মোডাল কন্টেন্ট - যেখানে বর্ডারটি দৌড়াবে */
+/* ১. মোডাল কন্টেন্ট - বর্ডারের পেছনের ব্যাকগ্রাউন্ড ব্ল্যাক */
 .modal-content {
-    background: #000; /* ব্যাকগ্রাউন্ড কালো */
-    padding: 30px 15px;
-    border-radius: 20px;
-    width: 100%; 
+    background: #000000; /* একদম ব্ল্যাক ব্যাকগ্রাউন্ড */
+    padding: 30px 20px;
+    border-radius: 15px;
+    width: 90%; 
     max-width: 350px;
     text-align: center;
     position: relative;
-    z-index: 3;
-    overflow: hidden; /* বাইরের অংশ কেটে ফেলার জন্য */
-    border: none; /* আগের বর্ডার বাদ */
+    overflow: hidden; 
+    border: none;
+    z-index: 1;
 }
 
-/* ২. দৌড়ানো রঙের ইফেক্ট (বর্ডারের পেছনে থাকবে) */
+/* ২. ৬টি রঙের দৌড়ানি ইফেক্ট (গ্যাপসহ) */
 .modal-content::before {
     content: '';
     position: absolute;
-    top: -45%;
-    left: -100%;
-    width: 500%;
-    height: 110%;
+    width: 200%;
+    height: 200%;
     background: conic-gradient(
-        #ff0000, /* Red */
-        #39ff14, /* Green */
-        #fbff00, /* Yellow */
-        #bc13fe, /* Purple */
-        #00f2ff, /* Blue */
-        #ff0000  /* আবার Red (মিলানোর জন্য) */
+        #ff0000 20deg 47deg,    /* Red */
+        transparent 20deg 65deg,
+        #39ff14 60deg 110deg,   /* Green */
+        transparent 80deg 120deg,
+        #fbff00 120deg 163deg, /* Yellow */
+        transparent 140deg 185deg,
+        #bc13fe 180deg 230deg, /* Purple */
+        transparent 200deg 245deg,
+        #00f2ff 240deg 287deg, /* Blue */
+        transparent 260deg 300deg,
+        #0000ff 300deg 345deg, /* Maroon */
+        transparent 320deg 360deg
     );
-    animation: rotate-border 4s linear infinite;
-    z-index: -10;
+    top: -50%;
+    left: -50%;
+    animation: border-chase 4s linear infinite; /* ৩ সেকেন্ডে একপাক ঘুরবে */
+    z-index: -2;
 }
 
-/* ৩. ভেতরের বক্সকে ঢেকে রাখা (যাতে শুধু বর্ডার দেখা যায়) */
+/* ৩. বর্ডারের ভেতরের অংশ যাতে ব্ল্যাক থাকে */
 .modal-content::after {
     content: '';
     position: absolute;
-    inset: 3px; /* বর্ডারের পুরুত্ব ৪ পিক্সেল */
-    background: rgba(0, 0, 0, 0.9);
-    border-radius: 20px;
+    inset: 3px; /* ৪ পিক্সেল চওড়া বর্ডার */
+    background: #000000; /* ভেতরের অংশও ব্ল্যাক */
+    border-radius: 16px;
     z-index: -1;
 }
 
-/* ৪. ঘোরার এনিমেশন লজিক */
+/* ৪. এনিমেশন লজিক */
+@keyframes border-chase {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* কন্টেন্ট যাতে ওপরে থাকে */
+.modal-content * {
+    position: relative;
+    z-index: 10;
+}
+
+
+/* ৪. এনিমেশন স্পিড */
 @keyframes rotate-border {
-    100% {
-        transform: rotate(350deg);
-    }
-        }
+    100% { transform: rotate(360deg); }
+}
+
+/* কন্টেন্টগুলো যাতে উপরে থাকে */
+.modal-content * {
+    position: relative;
+    z-index: 10;
+}
        
          /* Zooming Buttons */
         .zoom-btn {
