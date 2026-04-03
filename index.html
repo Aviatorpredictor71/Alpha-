@@ -1,6 +1,7 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Predictor | Ariyan Viaya </title>
@@ -16,12 +17,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
         body {
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('https://i.ibb.co/blockchain-nodes.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            color: white;
-            overflow-x: hidden;
-        }
+    background: #000; /* মেইন পেজে কোনো ইমেজ থাকবে না, শুধু কালো */
+    color: white;
+    overflow-x: hidden;
+}
 
         /* Top Activity Bar */
         .activity-bar {
@@ -73,50 +72,67 @@
 
         .cat-about { max-height: 0; overflow: hidden; transition: 0.4s ease-out; background: #000; }
         .cat-box.open .cat-about { max-height: 300px; padding: 15px; }
-        .about-border { border: 1px solid var(--neon-green); padding: 12px; border-radius: 8px; font-size: 18px; line-height: 1.6; }
+        .about-border { border: 1px solid var(--neon-green); padding: 12px; border-radius: 8px; font-size: 15px; line-height: 1.6; }
 
-        /* Main Game Cards */
-        .main-content { padding: 15px; display: flex; flex-direction: column; gap: 20px; margin-top: 50px; }
+        /* Main Game Cards - Neon Glowing Effect (Zoom Pulsing Active) */
+        .main-content { padding: 12px; display: flex; flex-direction: column; gap: 16px; margin-top: 55px; }
         .game-card {
-            width: 100%; height: 200px; border-radius 16px; overflow: hidden;
-            position: relative; border 8px solid var(--neon-green); cursor: pointer;
-            animation: cardPulse 2s infinite ease-in-out;
-        }
-        @keyframes cardPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 5px var(--neon-green); }
-            50% { transform: scale(1.03); box-shadow: 0 0 20px var(--neon-yellow); }
+            width: 100%; height: 200px;
+            border-radius: 13px;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid var(--neon-green);
+            cursor: pointer;
+            animation: neonGlowingPulse 2s infinite ease-in-out;
         }
         .game-card img { width: 100%; height: 100%; object-fit: cover; }
-        .game-card .title-overlay { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7); padding: 0px; text-align: center; }
+        .game-card .title-overlay {
+            position: absolute; bottom: 0; width: 100%;
+            background: rgba(0); padding: 0px; text-align: center;
+        }
+
+        @keyframes neonGlowingPulse {
+            0%, 100% { transform: scale(1); box-shadow:0 0 10px var(--neon-green); border-color: var(--neon-green); }
+            50% { transform: scale(1.05); box-shadow: 0 0 5px var(--neon-purple); border-color: var(--neon-purple); }
+        }
 
                 /* Password Modal & 3D Profile */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.96); justify-content: center; align-items: center; z-index: 2000;
             
-    }/* ১. মেইন মোডাল - এখানে ফুল স্ক্রিন ব্যাকগ্রাউন্ড থাকবে */
+    } /* কড়া লেভেলের ডিসেন্ট্রালাইজড নেটওয়ার্ক - কার্টুন মুক্ত ১০০% */
 .modal {
-    display: none; /* প্রথমে লুকিয়ে থাকবে */
+    display: none; 
     position: fixed; 
     top: 0; 
     left: 0; 
     width: 100%; 
     height: 100%; 
     z-index: 2000;
-    justify-content: center; /* জাভাস্ক্রিপ্ট যখন ওপেন করবে তখন এটা কাজ করবে */
+    justify-content: center; 
     align-items: center;
+    background-color: #00050a; /* ডার্ক ব্লু বেস */
     
-    /* আপনার ফুল স্ক্রিন ব্যাকগ্রাউন্ড */
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('https://raw.githubusercontent.com/Aviatorpredictor71/Alpha-/main/20260401_123656.png');
-    background-size: cover;
+    /* সরাসরি হাই-কোয়ালিটি নেটওয়ার্ক ইমেজ (কোনো কার্টুন না) */
+    background-image: linear-gradient(rgba(0, 5, 10, 0.4), rgba(0, 5, 10, 0.4)), 
+                      url('https://www.transparenttextures.com/patterns/carbon-fibre.png'),
+                      url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80');
+    background-size: auto, cover, cover;
     background-position: center;
+    animation: bg-pulse 3s infinite alternate ease-in-out;
+}
+
+/* ব্যাকগ্রাউন্ডে হালকা কাঁপাকাঁপি বা পালস ইফেক্ট */
+@keyframes bg-pulse {
+    0% { background-size: auto, 100% 100%, 105% 105%; }
+    100% { background-size: auto, 100% 100%, 115% 115%; }
 }
 
 /* ১. মোডাল কন্টেন্ট - বর্ডারের পেছনের ব্যাকগ্রাউন্ড ব্ল্যাক */
 .modal-content {
     background: #000000; /* একদম ব্ল্যাক ব্যাকগ্রাউন্ড */
-    padding: 30px 20px;
+    padding: 35px 20px;
     border-radius: 15px;
     width: 90%; 
     max-width: 350px;
@@ -157,7 +173,7 @@
 .modal-content::after {
     content: '';
     position: absolute;
-    inset: 3px; /* ৪ পিক্সেল চওড়া বর্ডার */
+    inset: 3px; /* 9 পিক্সেল চওড়া বর্ডার */
     background: #000000; /* ভেতরের অংশও ব্ল্যাক */
     border-radius: 16px;
     z-index: -1;
@@ -200,7 +216,7 @@
 
         .handwriting {
             font-family: 'Courier New', cursive; color: var(--neon-yellow); font-size: 25px; margin: 10px 0;
-            display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid; animation: typing 3s steps(30) infinite;
+            display: inline-block; overflow: hidden; white-space: nowrap; border-right: 3px solid; animation: typing 3s steps(30) infinite;
         }
         @keyframes typing { from { width: 0 } to { width: 100% } }
 
@@ -210,26 +226,26 @@
         }
 
         .broader-info {
-            padding: 30px 15px; margin: 40px 10px; background: #000; border: 2px solid;
-            border-radius: 15px; text-align: center; animation: rgbBorderFlow 5s infinite;
+            padding: 15px 15px; margin: 40px 10px; background: #000; border: 2px solid;
+            border-radius: 20px; text-align: center; animation: rgbBorderFlow 5s infinite;
         }
         /* আপনার ১৩৬ নম্বর লাইনের পর থেকে এগুলো বসান
         */
 @keyframes glowPulse {
     0% { 
-        box-shadow: 0 0 20px rgba(191, 0, 255, 0.8), inset 0 0 10px rgba(191, 0, 255, 0.4); 
+        box-shadow: 0 0 25px rgba(191, 0, 255, 0.8), inset 0 0 10px rgba(191, 0, 255, 0.4); 
     } /* পার্পল */
     25% { 
-        box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), inset 0 0 10px rgba(57, 255, 20, 0.4); 
+        box-shadow: 0 0 25px rgba(57, 255, 20, 0.8), inset 0 0 10px rgba(57, 255, 20, 0.4); 
     } /* গ্রিন */
     50% { 
-        box-shadow: 0 0 20px rgba(255, 230, 0, 0.8), inset 0 0 10px rgba(255, 230, 0, 0.4); 
+        box-shadow: 0 0 25px rgba(255, 230, 0, 0.8), inset 0 0 5px rgba(255, 230, 0, 0.4); 
     } /* ইয়েলো */
     75% { 
-        box-shadow: 0 0 20px rgba(0, 153, 255, 0.8), inset 0 0 10px rgba(0, 153, 255, 0.4); 
+        box-shadow: 0 0 25px rgba(0, 153, 255, 0.8), inset 0 0 10px rgba(0, 153, 255, 0.4); 
     } /* ব্লু */
     100% { 
-        box-shadow: 0 0 20px rgba(191, 0, 255, 0.8), inset 0 0 10px rgba(191, 0, 255, 0.4); 
+        box-shadow: 0 0 25px rgba(191, 0, 255, 0.8), inset 0 0 10px rgba(191, 0, 255, 0.4); 
     } /* আবার পার্পল */
 }
 
@@ -260,10 +276,10 @@
 /* ৫টি রঙের RGB এনিমেশন লজিক */
 @keyframes key-rgb-focus {
     0% { border-color: #ff0000; box-shadow: 0 0 5px #ff0000; }     /* Red */
-    20% { border-color: #39ff14; box-shadow: 0 0 15px #39ff14; }    /* Green */
-    40% { border-color: #fbff00; box-shadow: 0 0 15px #fbff00; }    /* Yellow */
-    60% { border-color: #bc13fe; box-shadow: 0 0 15px #bc13fe; }    /* Purple */
-    80% { border-color: #00f2ff; box-shadow: 0 0 15px #00f2ff; }    /* Blue */
+    20% { border-color: #39ff14; box-shadow: 0 0 10px #39ff14; }    /* Green */
+    40% { border-color: #fbff00; box-shadow: 0 0 10px #fbff00; }    /* Yellow */
+    60% { border-color: #bc13fe; box-shadow: 0 0 10px #bc13fe; }    /* Purple */
+    80% { border-color: #00f2ff; box-shadow: 0 0 10px #00f2ff; }    /* Blue */
     100% { border-color: #ff0000; box-shadow: 0 0 5px #ff0000; }   /* ব্যাক টু Red */
 }    
 </style>
@@ -325,7 +341,7 @@
                 
             </div>
             <h2 id="modalTitle" style="color: var(--neon-green)">LOCKED</h2>
-            <div class="handwriting" id="loopText">Aviator Predictor Access...</div>
+            <div class="handwriting" id="loopText">𝐀𝐯𝐢𝐚𝐭𝐨𝐫,𝐂𝐚𝐫𝐬𝐡,𝐋𝐮𝐜𝐤𝐲,𝐂𝐚𝐫𝐳𝐲</div>
             <input type="password" id="passIn" placeholder="Enter Key 🔑" style="width:100%; padding:24px; margin-top:15px; border-radius:10px; background:#000; color:white; border:3px solid var(--neon-purple); text-align: center; font-size: 20px;">
             <button class="zoom-btn unlock-btn">UNLOCK NOW</button>
             <button class="zoom-btn close-btn" onclick="closeModal()">CLOSE BYPASS</button>
@@ -482,7 +498,7 @@
         });
 
         // User List
-        const users = ["Niloy***@gmail.com", "user99***@yahoo.com", "dev***@live.com"];
+        const users = ["Niloy***@gmail.com", "user99***@yahoo.com", "Arfat***@live.com"];
         setInterval(() => {
             const randomUser = users[Math.floor(Math.random()*users.length)];
             const list = document.getElementById('userList');
@@ -674,6 +690,51 @@ document.getElementById('restartBtn').addEventListener('click', function() {
 </script>
 
 
-</body>
+</body    
+
 </html>
 
+<div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; background: #000;"></div>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+particlesJS("particles-js", {
+  "particles": {
+    "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+    "color": { "value": ["#ff0000", "#00ff00", "#fbff00", "#bc13fe", "#00f2ff"] },
+    "shape": { "type": "circle" },
+    "opacity": { "value": 0.6, "random": true },
+    "size": { "value": 5, "random": true },
+    "line_linked": {
+      "enable": true,
+      "distance": 150,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 8,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": { "enable": true, "mode": "grab" },
+      "onclick": { "enable": true, "mode": "push" }
+    },
+    "modes": {
+      "grab": { "distance": 200, "line_linked": { "opacity": 1 } }
+    }
+  },
+  "retina_detect": true
+});
+</script>
+
+    </html>
