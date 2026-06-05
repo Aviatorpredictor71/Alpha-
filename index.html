@@ -795,10 +795,59 @@ document.getElementById('restartBtn').addEventListener('click', function() {
 });
 </script>
 
-<div id="payment-wrapper" style="margin-top: 5px; padding: 15px;">
-    <button id="payTrigger" onclick="showPayment()" style="padding: 10px 40px; font-size: 20px; cursor: pointer; background: transparent; border: 3px solid var(--neon-yellow); color: var(--neon-yellow); border-radius: 15px; margin: 0 auto 20px auto; display: block; animation: btnZoom 1s infinite ease-in-out;">
-         💸 পেমেন্ট করতে ক্লিক করুন 👈🏻 
+<style>
+    :root {
+        --neon-yellow: #ffeb3b;
+    }
+
+    @keyframes borderDance {
+        0%, 100% { 
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 5px var(--neon-yellow), inset 0 0 5px var(--neon-red);
+        }
+        50% { 
+            border-color: ##ff0000;
+            box-shadow: 0 0 20px var(--neon-yellow), inset 0 0 20px var(--neon-yellow);
+        }
+    }
+
+    #payTrigger {
+        padding: 15px 40px;
+        font-size: 20px;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.9);
+        border: 4px solid var(--neon-yellow);
+        color: var(--neon-yellow);
+        border-radius: 50px;
+        margin: 20px auto;
+        display: block;
+        transition: transform 0.2s ease;
+        /* বর্ডার অ্যানিমেশন কল করা */
+        animation: borderDance 1.5s infinite alternate;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    #payTrigger:hover {
+        transform: scale(1.05);
+        background: var(--neon-yellow);
+        color: #000;
+        animation: none; /* হোভার করলে অ্যানিমেশন থামিয়ে দেয়া হলো */
+    }
+</style>
+
+<div id="payment-wrapper" style="text-align: center;">
+    <button id="payTrigger" onclick="showPayment()">
+        💸 পেমেন্ট করতে ক্লিক করুন 👈🏻 
     </button>
+</div>
+
+<script>
+    function showPayment() {
+        alert("পেমেন্ট অপশন চালু হয়েছে!");
+    }
+</script>
 
     <div id="paymentSection" style="display: none; background:  padding: 30px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; border: 2px solid; animation: rgbBorderFlow 2s infinite linear;">
         
