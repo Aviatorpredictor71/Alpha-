@@ -680,26 +680,34 @@
 </script>
 
     <div id="paymentSection" style="display: none; padding: 5px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; border: 5px solid; animation: rgbBorderFlow 3s infinite linear;">
+    <div id="paymentSection" style="display: none; padding: 15px; border-radius: 25px; text-align: center; max-width: 450px; margin: 0 auto; border: 5px solid; animation: rgbBorderFlow 3s infinite linear; box-sizing: border-box;">
         <h4 id="typing-loop" style="color: var(--neon-red); margin-bottom: 20px; font-size: 20px; height: 30px;"></h4>
 
-        <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
-            <div class="pay-box rgb-glow-border" onclick="setNumber('01334499485')" style="cursor: pointer; padding: 0px; border-radius: 15px; display: inline-block; overflow: hidden; animation: btnZoom 1s infinite, dynamicRGB 1.5s infinite linear; margin: 10px; box-sizing: border-box; width: 160px; height: 140px; background-color: #000;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px; min-height: 150px;">
+            <div class="pay-box rgb-glow-border" onclick="setNumber('01334499485')" style="cursor: pointer; padding: 0px; border-radius: 15px; display: inline-block; overflow: hidden; animation: btnZoom 1s infinite ease-in-out, dynamicRGB 1.5s infinite linear; margin: 10px; box-sizing: border-box; width: 160px; height: 140px; background-color: #000;">
                 <img src="1000626992.jpg" style="width: 100%; height: 100%; display: block; border-radius: 11px; object-fit: cover; object-position: center;">
             </div>
 
-            <div class="pay-box rgb-glow-border" onclick="setNumber('01813971319')" style="cursor: pointer; padding: 0; border-radius: 15px; display: inline-block; overflow: hidden; animation: btnZoom 1s infinite, dynamicRGB 1.5s infinite linear; margin: 10px; width: 160px; height: 140px; background-color: #000;">
+            <div class="pay-box rgb-glow-border" onclick="setNumber('01813971319')" style="cursor: pointer; padding: 0; border-radius: 15px; display: inline-block; overflow: hidden; animation: btnZoom 1.2s infinite ease-in-out, dynamicRGB 1.5s infinite linear; margin: 10px; width: 160px; height: 140px; background-color: #000;">
                 <img src="1000626804.jpg" style="width: 100%; height: 100%; display: block; border-radius: 11px; object-fit: cover;">
             </div>
         </div>
         
-        <div style="display: flex; gap: 30px; margin-bottom: 15px;">
-         <input type="text" id="copyInput" value="☝️উপরের,ছবি ক্লিক করলে নাম্বার পেয়ে যাবেন☝️" readonly style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--neon-yellow); background: #111; color: #00ff00; text-align: center; font-size: 13px; font-weight: bold;">
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+         <input type="text" id="copyInput" value="☝️উপরের ছবি ক্লিক করলে নাম্বার পেয়ে যাবেন☝️" readonly style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--neon-yellow); background: #111; color: #00ff00; text-align: center; font-size: 13px; font-weight: bold;">
 
-            <button onclick="copyNumber()" style="padding: 5px 20px; background: var(--neon-green); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; animation: btnZoom 2s infinite;">COPY</button>
+            <button onclick="copyNumber()" style="padding: 10px 20px; background: var(--neon-green); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; animation: btnZoom 2s infinite ease-in-out; color: #000;">COPY</button>
         </div>
         
-        <input type="file" id="screenshot" style="margin-bottom: 20px; color: #fff; width: 100%;">
-        <button id="submitBtn" onclick="submitProof()" style="width: 50%; padding: 16px; background: transparent; border: 2px solid var(--neon-blue); color: #ff0000; cursor: pointer; border-radius: 10px; font-weight: bold; box-shadow: 0 0 15px var(--neon-blue);">SUBMIT PROOF</button>
+        <div style="margin-bottom: 20px; text-align: left;">
+            <label for="screenshot" style="display: block; width: 100%; padding: 12px; background: #222; color: #fff; border: 1px dashed var(--neon-yellow); border-radius: 8px; cursor: pointer; font-weight: bold; text-align: center; font-size: 14px; box-sizing: border-box;">
+                📁 পেমেন্টের স্ক্রিনশট এখানে ক্লিক দিয়ে জমা দেন
+            </label>
+            <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="document.getElementById('file-chosen').innerText = 'সিলেক্ট করা ফাইল: ' + this.files[0].name">
+            <div id="file-chosen" style="color: var(--neon-green); font-size: 12px; margin-top: 5px; text-align: center;">কোনো স্ক্রিনশট সিলেক্ট করা হয়নি</div>
+        </div>
+        
+        <button id="submitBtn" onclick="submitProof()" style="width: 80%; padding: 15px; background: #ff0000; color: #ffffff; cursor: pointer; border-radius: 20px; border: none; font-weight: bold; font-size: 16px; box-shadow: 0 0 15px #ff0000;">SUBMIT PROOF</button>
     </div>
 
     <script>
@@ -711,7 +719,7 @@
         }, 500);
 
         const typingElement = document.getElementById('typing-loop');
-        const phrases = ["পেমেন্ট মেথড সিলেক্ট করুন...", "পেমেন্ট না, হলো Owner K.. মেসেজ দিন...", "সমাধান ফিক্স করে দেওয়া হবে!"];
+        const phrases = ["পেমেন্ট মেথড সিলেক্ট করুন...", "পেমেন্ট না হলে Owner কে মেসেজ দিন...", "সমাধান ফিক্স করে দেওয়া হবে!"];
         let phraseIndex = 0;
         setInterval(() => {
             typingElement.innerText = phrases[phraseIndex];
@@ -736,7 +744,7 @@
             if(document.getElementById('screenshot').files.length > 0) {
                 alert("সাবমিট সম্পন্ন হয়েছে!");
                 document.getElementById('payment-wrapper').style.display = 'none';
-                window.scrollTo(0, 0); 
+                window.scrollTo({top: 0, behavior: 'smooth'}); 
             } else {
                 alert("দয়া করে একটি স্ক্রিনশট দিন 🤔!");
             }
