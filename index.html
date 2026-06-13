@@ -636,7 +636,7 @@
             box-shadow: 0 0 5px var(--neon-yellow), inset 0 0 5px var(--neon-red);
         }
         50% { 
-            border-color: #00ff00;
+            border-color: #ff0000;
             box-shadow: 0 0 20px var(--neon-yellow), inset 0 0 20px var(--neon-yellow);
         }
     }
@@ -645,14 +645,13 @@
         padding: 15px 40px;
         font-size: 20px;
         cursor: pointer;
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(0, 0, 0, 0.9);
         border: 4px solid var(--neon-yellow);
         color: var(--neon-yellow);
         border-radius: 50px;
         margin: 20px auto;
         display: block;
         transition: transform 0.2s ease;
-        /* বর্ডার অ্যানিমেশন কল করা */
         animation: borderDance 1.5s infinite alternate;
         text-transform: uppercase;
         font-weight: bold;
@@ -663,7 +662,7 @@
         transform: scale(1.05);
         background: var(--neon-yellow);
         color: #000;
-        animation: none; /* হোভার করলে অ্যানিমেশন থামিয়ে দেওয়া হলো */
+        animation: none;
     }
 </style>
 
@@ -694,10 +693,10 @@
     </div>
     
     <div style="margin-bottom: 20px; text-align: left; width: 100%; box-sizing: border-box;">
-        <label for="screenshot" style="display: block; width: 100%; padding: 12px; background: #222; color: #fff; border: 1px dashed var(--neon-yellow); border-radius: 8px; cursor: pointer; font-weight: bold; text-align: center; font-size: 14px; box-sizing: border-box;">
+        <div onclick="document.getElementById('screenshot').click();" style="display: block; width: 100%; padding: 12px; background: #222; color: #fff; border: 1px dashed var(--neon-yellow); border-radius: 8px; cursor: pointer; font-weight: bold; text-align: center; font-size: 14px; box-sizing: border-box;">
             📁 পেমেন্টের স্ক্রিনশট এখানে ক্লিক দিয়ে জমা দেন
-        </label>
-        <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="document.getElementById('file-chosen').innerText = 'সিলেক্ট করা ফাইল: ' + this.files[0].name">
+        </div>
+        <input type="file" id="screenshot" accept="image/*" style="display: none;" onchange="updateFileName(this)">
         <div id="file-chosen" style="color: var(--neon-green); font-size: 12px; margin-top: 5px; text-align: center;">কোনো স্ক্রিনশট সিলেক্ট করা হয়নি</div>
     </div>
     
@@ -724,7 +723,6 @@
         }
     }, 3000);
 
-    // ডুপ্লিকেট ফাংশন ফিক্সড করা হয়েছে (অ্যালার্ট এবং ওপেন একসাথে হবে)
     function showPayment() {
         alert("পেমেন্ট অপশন চালু হয়েছে!");
         if(document.getElementById('payTrigger')) {
@@ -733,7 +731,9 @@
         document.getElementById('paymentSection').style.display = 'block';
     }
 
-    function setNumber(num) { document.getElementById('copyInput').value = num; }
+    function setNumber(num) { 
+        document.getElementById('copyInput').value = num; 
+    }
 
     function copyNumber() {
         const copyText = document.getElementById("copyInput");
@@ -742,14 +742,33 @@
         alert("নাম্বার কপি হয়েছে!");
     }
 
+    // ফাইল সিলেক্ট হলে নাম দেখানোর ফিক্সড ফাংশন
+    function updateFileName(input) {
+        const fileChosen = document.getElementById('file-chosen');
+        if(input.files && input.files.length > 0) {
+            fileChosen.innerText = 'সিলেক্ট করা ফাইল: ' + input.files[0].name;
+            fileChosen.style.color = '#00ff00'; // সবুজ কালার হবে
+        } else {
+            fileChosen.innerText = '⛔,কোনো স্ক্রিনশট সিলেক্ট করা হয়নি';
+            fileChosen.style.color = 'var(--neon-green)';
+        }
+    }
+
+    // সাবমিট প্রুফ এবং এরর পপআপ এর ফিক্সড লজিক
     function submitProof() {
-        if(document.getElementById('screenshot').files.length > 0) {
+        const fileInput = document.getElementById('screenshot');
+        
+        if(fileInput && fileInput.files.length > 0) {
             alert("সাবমিট সম্পন্ন হয়েছে!");
             if(document.getElementById('payment-wrapper')) {
                 document.getElementById('payment-wrapper').style.display = 'none';
             }
+            if(document.getElementById('paymentSection')) {
+                document.getElementById('paymentSection').style.display = 'none';
+            }
             window.scrollTo({top: 0, behavior: 'smooth'}); 
         } else {
+            // ফাইল না থাকলে এই অ্যালার্ট পপআপটি ১০০% শো করবে
             alert("দয়া করে একটি স্ক্রিনশট দিন 🤔!");
         }
     }
