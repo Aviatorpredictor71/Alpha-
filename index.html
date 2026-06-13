@@ -625,9 +625,12 @@
         document.getElementById('restartBtn').addEventListener('click', function() { location.reload(); });
     </script>
 
-<style>
+<<style>
     :root {
         --neon-yellow: #ffeb3b;
+        --neon-red: #ff0000;
+        --neon-green: #00ff00;
+        --wa-color: #25D366;
     }
 
     @keyframes borderDance {
@@ -637,8 +640,27 @@
         }
         50% { 
             border-color: #ff0000;
-            box-shadow: 0 0 20px var(--neon-yellow), inset 0 0 20px var(--neon-yellow);
+            box-shadow: 0 0 5px var(--neon-yellow), inset 0 0 80px var(--neon-red);
         }
+    }
+
+    @keyframes rgbBorderFlow {
+        0% { border-color: #ff0000; }
+        33% { border-color: #00ff00; }
+        66% { border-color: #0000ff; }
+        100% { border-color: #ff0000; }
+    }
+
+    @keyframes dynamicRGB {
+        0% { box-shadow: 0 0 10px #ff0000; }
+        33% { box-shadow: 0 0 10px #00ff00; }
+        66% { box-shadow: 0 0 10px #0000ff; }
+        100% { box-shadow: 0 0 10px #ff0000; }
+    }
+
+    @keyframes btnZoom {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
     }
 
     #payTrigger {
@@ -646,13 +668,13 @@
         font-size: 20px;
         cursor: pointer;
         background: rgba(0, 0, 0, 0.9);
-        border: 4px solid var(--neon-yellow);
+        border: 4px solid var(--neon-green);
         color: var(--neon-yellow);
         border-radius: 50px;
         margin: 20px auto;
         display: block;
-        transition: transform 0.2s ease;
-        animation: borderDance 1.5s infinite alternate;
+        transition: transform 2s ease;
+        animation: borderDance 1s infinite alternate;
         text-transform: uppercase;
         font-weight: bold;
         letter-spacing: 1px;
@@ -661,7 +683,119 @@
     #payTrigger:hover {
         transform: scale(1.05);
         background: var(--neon-yellow);
+        color: #000;
+        animation: none;
+    }
 
+    .close-btn { 
+        background: #333; 
+        color: white; 
+        padding: 9px 18px; 
+        border-radius: 20px; 
+        cursor: pointer; 
+        display: inline-block; 
+        margin-bottom: 15px; 
+        font-size: 16px;
+        border: 1px solid #555;
+    }
+
+    .wa-button {
+        background-color: var(--wa-color); 
+        color: #ff0000; 
+        padding: 12px; 
+        border-radius: 15px; 
+        font-weight: bold; 
+        text-decoration: none; 
+        display: block; 
+        margin: 15px 0;
+        box-shadow: 0 0 15px var(--wa-color);
+        font-size: 18px;
+        animation: btnZoom 1.5s infinite ease-in-out;
+        text-align: center;
+    }
+</style>
+
+<div id="payment-wrapper" style="text-align: center;">
+    <button id="payTrigger" onclick="showPayment()">
+        💸 প্রেমেন্ট করতে ক্লিক করুন 🤏 
+    </button>
+</div>
+
+<div id="paymentSection" style="display: none; padding: 15px; border-radius: 25px; text-align: center; max-width: 450px; margin: 20px auto; border: 5px solid; animation: rgbBorderFlow 3s infinite linear; box-sizing: border-box; background-color: #000; overflow: hidden;">
+    
+    <div class="close-btn" onclick="closePayment()">❌ বন্ধ করুন</div>
+
+    <h4 id="typing-loop" style="color: var(--neon-red); margin-bottom: 20px; font-size: 20px; height: 30px;"></h4>
+
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 25px; min-height: 150px; width: 100%; box-sizing: border-box;">
+        <div class="pay-box" onclick="setNumber('01334499485')" style="cursor: pointer; padding: 0px; border-radius: 15px; display: inline-block; overflow: hidden; animation: btnZoom 9s infinite ease-in-out, dynamicRGB 1.5s infinite linear; margin: 5px; box-sizing: border-box; width: 160px; height: 140px; background-color: #111; flex-shrink: 0; border: 2px solid #333;">
+            <img src="1000626992.jpg" style="width: 100%; height: 100%; display: block; border-radius: 11px; object-fit: cover; object-position: center;">
+        </div>
+
+        <div class="pay-box" onclick="setNumber('01813971319')" style="cursor: pointer; padding: 0px; border-radius: 15px; display: inline-block; overflow: hidden; animation: btcenter 9s infinite ease-in-out, dynamicRGB 1.5s infinite linear; margin: 5px; box-sizing: border-box; width: 160px; height: 140px; background-color: #111; flex-shrink: 0; border: 2px solid #333;">
+            <img src="1000626804.jpg" style="width: 100%; height: 100%; display: block; border-radius: 11px; object-fit: cover;">
+        </div>
+    </div>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 15px; width: 100%; box-sizing: border-box; align-items: center;">
+        <input type="text" id="copyInput" value="☝️উপরের ছবি ক্লিক করলে নাম্বার পেয়ে যাবেন☝️" readonly style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--neon-yellow); background: #111; color: #00ff00; text-align: center; font-size: 13px; font-weight: bold; min-width: 0;">
+        <button onclick="copyNumber()" style="padding: 12px 20px; background: var(--neon-green); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; animation: btnZoom 1s infinite ease-in-out; color: #000; font-size: 14px; white-space: nowrap;">COPY</button>
+    </div>
+    
+    <a href="https://wa.me/8801903627232" target="_blank" class="wa-button" onclick="closePayment()">
+        💬প্রেমেন্ট স্ক্রিনশট ক্লিক দিয়ে জমা দেন -? 
+    </a>
+
+    <p style="color:#ffeb3b; font-size: 17px; margin-top: 15px; line-height: 12.;">
+        ⚠️ ৫ মিনিট পর আপনার মেসেজ বক্স চেক দিলে পাসওয়ার্ড পেয়ে যাবেন।
+    </p>
+</div>
+
+<script>
+    const checkDashboard = setInterval(() => {
+        if (document.querySelector('.dashboard-class-name') || window.location.hash === '#dashboard') {
+            if(document.getElementById('payTrigger')) {
+                document.getElementById('payTrigger').style.display = 'none';
+            }
+            clearInterval(checkDashboard); 
+        }
+    }, 500);
+
+    const typingElement = document.getElementById('typing-loop');
+    const phrases = ["পেমেন্ট মেথড সিলেক্ট করুন...", "পেমেন্ট না হলে Owner কে মেসেজ দিন...", "সমাধান ফিক্স করে দেওয়া হবে!"];
+    let phraseIndex = 0;
+    setInterval(() => {
+        if(typingElement) {
+            typingElement.innerText = phrases[phraseIndex];
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+    }, 3000);
+
+    function showPayment() {
+        if(document.getElementById('payTrigger')) {
+            document.getElementById('payTrigger').style.display = 'none';
+        }
+        document.getElementById('paymentSection').style.display = 'block';
+    }
+
+    function closePayment() {
+        document.getElementById('paymentSection').style.display = 'none';
+        if(document.getElementById('payTrigger')) {
+            document.getElementById('payTrigger').style.display = 'block';
+        }
+    }
+
+    function setNumber(num) { 
+        document.getElementById('copyInput').value = num; 
+    }
+
+    function copyNumber() {
+        const copyText = document.getElementById("copyInput");
+        copyText.select();
+        document.execCommand("copy");
+        alert("নাম্বার কপি হয়েছে!");
+    }
+</script>
      
     <div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; background: #000;"></div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
