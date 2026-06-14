@@ -742,14 +742,22 @@
         <button onclick="copyNumber()" style="padding: 12px 20px; background: var(--neon-green); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; animation: btnZoom 1s infinite ease-in-out; color: #000; font-size: 14px; white-space: nowrap;">COPY</button>
     </div>
     
-    <a href="https://wa.me/8801903627232" target="_blank" class="wa-button" onclick="closePayment()">
-        💬প্রেমেন্ট স্ক্রিনশট ক্লিক দিয়ে জমা দেন -? 
-    </a>
+    <a href="http://payment-pov-user.unaux.com/" 
+   target="_blank" 
+   class="wa-button" 
+   onclick="handleRedirect()">
+   💬 পেমেন্ট স্ক্রিনশট ক্লিক দিয়ে জমা দেন -?
+</a>
 
-    <p style="color:#ffeb3b; font-size: 17px; margin-top: 15px; line-height: 12.;">
-        ⚠️ ৫ মিনিট পর আপনার মেসেজ বক্স চেক দিলে পাসওয়ার্ড পেয়ে যাবেন।
-    </p>
-</div>
+<script>
+function handleRedirect() {
+    // পেমেন্ট সেকশন ক্লোজ করার লজিক (আপনার আগের ফাংশন)
+    closePayment();
+    
+    // নিশ্চিত করার জন্য যে ব্রাউজার নতুন লিংকে যাবে
+    window.open('http://payment-pov-user.unaux.com/', '_blank');
+}
+</script> 
 
 <script>
     const checkDashboard = setInterval(() => {
