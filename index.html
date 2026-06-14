@@ -625,12 +625,11 @@
         document.getElementById('restartBtn').addEventListener('click', function() { location.reload(); });
     </script>
 
-<<style>
+  <style>
     :root {
         --neon-yellow: #ffeb3b;
         --neon-red: #ff0000;
         --neon-green: #00ff00;
-        --wa-color: #25D366;
     }
 
     @keyframes borderDance {
@@ -661,6 +660,11 @@
     @keyframes btnZoom {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
+    }
+
+    @keyframes fastZoom {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
     }
 
     #payTrigger {
@@ -698,21 +702,6 @@
         font-size: 16px;
         border: 1px solid #555;
     }
-
-    .wa-button {
-        background-color: var(--wa-color); 
-        color: #ff0000; 
-        padding: 12px; 
-        border-radius: 15px; 
-        font-weight: bold; 
-        text-decoration: none; 
-        display: block; 
-        margin: 15px 0;
-        box-shadow: 0 0 15px var(--wa-color);
-        font-size: 18px;
-        animation: btnZoom 1.5s infinite ease-in-out;
-        text-align: center;
-    }
 </style>
 
 <div id="payment-wrapper" style="text-align: center;">
@@ -732,32 +721,33 @@
             <img src="1000626992.jpg" style="width: 100%; height: 100%; display: block; border-radius: 11px; object-fit: cover; object-position: center;">
         </div>
 
-        <div class="pay-box" onclick="setNumber('01813971319')" style="cursor: pointer; padding: 0px; border-radius: 15px; display: inline-block; overflow: hidden; animation: btcenter 9s infinite ease-in-out, dynamicRGB 1.5s infinite linear; margin: 5px; box-sizing: border-box; width: 160px; height: 140px; background-color: #111; flex-shrink: 0; border: 2px solid #333;">
+        <div class="pay-box" onclick="setNumber('01813971319')" style="cursor: pointer; padding: 0px; border-radius: 15px; display: inline-block; overflow: hidden; animation: btnZoom 9s infinite ease-in-out, dynamicRGB 1.5s infinite linear; margin: 5px; box-sizing: border-box; width: 160px; height: 140px; background-color: #111; flex-shrink: 0; border: 2px solid #333;">
             <img src="1000626804.jpg" style="width: 100%; height: 100%; display: block; border-radius: 11px; object-fit: cover;">
         </div>
     </div>
     
-    <div style="display: flex; gap: 10px; margin-bottom: 15px; width: 100%; box-sizing: border-box; align-items: center;">
+    <div style="display: flex; gap: 10px; margin-bottom: 25px; width: 100%; box-sizing: border-box; align-items: center;">
         <input type="text" id="copyInput" value="☝️উপরের ছবি ক্লিক করলে নাম্বার পেয়ে যাবেন☝️" readonly style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--neon-yellow); background: #111; color: #00ff00; text-align: center; font-size: 13px; font-weight: bold; min-width: 0;">
         <button onclick="copyNumber()" style="padding: 12px 20px; background: var(--neon-green); border: none; border-radius: 8px; cursor: pointer; font-weight: bold; animation: btnZoom 1s infinite ease-in-out; color: #000; font-size: 14px; white-space: nowrap;">COPY</button>
     </div>
     
-    <a href="http://payment-pov-user.unaux.com/" 
-   target="_blank" 
-   class="wa-button" 
-   onclick="handleRedirect()">
-   http://payment-pov-user.unaux.com/
-</a> 
+    <div style="margin-bottom: 10px; border-top: 1px dashed #555; padding-top: 15px;">
+        <div style="color: var(--neon-yellow); font-size: 15px; font-weight: bold; margin-bottom: 12px;">
+            পেমেন্ট স্ক্রিনশট দিতে নিচের লিংকটি কপি করুন 👇
+        </div>
+        <div style="display: flex; gap: 10px; width: 100%; box-sizing: border-box; align-items: center;">
+            <input type="text" id="linkInputBox" value="https://payment-pov-user.unaux.com/" readonly style="flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #00ff00; background: #111; color: var(--neon-green); text-align: center; font-size: 14px; font-weight: bold; min-width: 0;">
+            <button onclick="copyLinkShowPopup()" style="padding: 12px 15px; background: #ff9800; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; animation: fastZoom 0.1s infinite ease-in-out; color: #000; font-size: 14px; white-space: nowrap;">কপি করুন</button>
+        </div>
+    </div>
+</div>
 
-<script>
-function handleRedirect() {
-    // পেমেন্ট সেকশন ক্লোজ করার লজিক (আপনার আগের ফাংশন)
-    closePayment();
-    
-    // নিশ্চিত করার জন্য যে ব্রাউজার নতুন লিংকে যাবে
-    window.open('http://payment-pov-user.unaux.com/', '_blank');
-}
-</script> 
+<div id="linkPopup" style="display: none; position: fixed; top: 70%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.95); border: 3px solid var(--neon-green); border-radius: 15px; padding: 25px; z-index: 10000; width: 85%; max-width: 400px; text-align: center; box-shadow: 0px 0px 25px var(--neon-green);">
+    <p style="color: #fff; font-size: 17px; line-height: 1.6; font-weight: bold; margin-bottom: 20px;">
+        আপনার ফোনের 📲Google এ গিয়ে লিংকটা পেস্ট করে সার্চ🔍 করুন। ওইখানে পেমেন্ট স্ক্রিনশট জমা দিতে পারবেন এবং পাসওয়ার্ড নির্দিষ্ট সময়ের মধ্যে খুব দ্রুত পেয়ে যাবেন। ধন্যবাদ।
+    </p>
+    <button onclick="closePopupFast()" style="background: var(--neon-red); color: #fff; border: none; padding: 10px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 17bpx;">ঠিক আছে</button>
+</div>
 
 <script>
     const checkDashboard = setInterval(() => {
@@ -793,6 +783,7 @@ function handleRedirect() {
         }
     }
 
+    // নাম্বার কপির জন্য (আগের ফাংশন, পপআপ আসবে না)
     function setNumber(num) { 
         document.getElementById('copyInput').value = num; 
     }
@@ -803,8 +794,31 @@ function handleRedirect() {
         document.execCommand("copy");
         alert("নাম্বার কপি হয়েছে!");
     }
-</script>
-     
+
+    // নতুন লিংক কপির জন্য (পপআপ আসবে)
+    let popupTimer;
+    function copyLinkShowPopup() {
+        const linkText = document.getElementById("linkInputBox");
+        linkText.select();
+        document.execCommand("copy");
+        
+        // পপআপ শো করা
+        document.getElementById("linkPopup").style.display = "block";
+        
+        // আগের কোনো টাইমার থাকলে ক্লিয়ার করা
+        clearTimeout(popupTimer);
+        
+        // ৩০ সেকেন্ড পর অটোমেটিক রিমুভ (30000 ms)
+        popupTimer = setTimeout(() => {
+            closePopupFast();
+        }, 30000);
+    }
+
+    function closePopupFast() {
+        document.getElementById("linkPopup").style.display = "none";
+    }
+  </script>
+
     <div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; background: #000;"></div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
