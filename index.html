@@ -207,15 +207,16 @@
             100% { transform: rotate(360deg); }
         }
 
-         /* Zooming Buttons */
+                 /* Zooming Buttons */
         .zoom-btn {
-            width: 75%; padding: 12px; border: none; color: block; border-radius: 29px;
+            width: 75%; padding: 12px; border: none; color: black; border-radius: 29px;
             margin-top: 15px; cursor: pointer; font-weight: bold; font-size: 18px;
             animation: btnZoom 2s infinite ease-in-out;
         }
         @keyframes btnZoom { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1.06); } }
         .unlock-btn { background: #28a745; box-shadow: 0 0 15px #000000; }
-        .close-btn { background: #dc3545; box-shadow: 0 0 15px #dc3545; }
+        .close-btn { background: #ff0000 !important; color: white !important; box-shadow: 0 0 15px #ff0000; }
+
      
         .handwriting {
             font-family: 'Courier New', cursive; color: var(--neon-yellow); font-size: 25px; margin: 10px 0;
